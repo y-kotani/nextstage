@@ -1,0 +1,31 @@
+<%= @count %>
+<table class="table table-striped">
+  <% @shops.each do |shop| %>
+    <tbody>
+      <tr>
+        <td rowspan="3">
+          <%= image_tag(shop.logo_image) %>
+        </td>
+        <td>
+          <%= link_to(shop.name, shop.urls.pc) %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= label_tag(shop.address) %>
+      </tr>
+      <tr>
+        <td>
+          <%= label_tag(shop.open) %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= label_tag(shop.budget.average) %>
+        </td>
+      </tr>
+    </tbody>
+  <% end %>
+</table>
+Powered by
+<a href="http://webservice.recruit.co.jp/">ホットペッパー Webサービス</a>
