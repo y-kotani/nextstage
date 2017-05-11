@@ -4,6 +4,6 @@ class HotpeppersController < ApplicationController
     h = Hotpepper.find_by_position(lat=34.784654,lng=135.631128,range=2)
     @count = h.attributes['results_available']
     @shops = h.attributes['shop']
-    binding.pry
+    #binding.pry
   end
 end

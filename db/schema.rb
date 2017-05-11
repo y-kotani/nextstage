@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170426072232) do
+ActiveRecord::Schema.define(version: 20170511032327) do
 
   create_table "hotpeppers", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -35,6 +35,31 @@ ActiveRecord::Schema.define(version: 20170426072232) do
     t.datetime "updated_at",              null: false
   end
 
+  create_table "restaurants", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.decimal  "latitude",                 precision: 12, scale: 10
+    t.decimal  "longitude",                precision: 13, scale: 10
+    t.string   "adress",     limit: 255
+    t.string   "open_time",  limit: 255
+    t.string   "budget",     limit: 255
+    t.string   "url",        limit: 255
+    t.integer  "tel",        limit: 4
+    t.text     "review",     limit: 65535
+    t.integer  "rate",       limit: 4
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer  "user_id",       limit: 4
+    t.integer  "restaurant_id", limit: 4
+    t.integer  "rate",          limit: 4
+    t.integer  "OK_NOT",        limit: 4
+    t.text     "review",        limit: 65535
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
@@ -46,8 +71,7 @@ ActiveRecord::Schema.define(version: 20170426072232) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
     t.string   "last_sign_in_ip",        limit: 255
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.string   "name",                   limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

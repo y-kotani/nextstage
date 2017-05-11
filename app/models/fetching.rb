@@ -1,25 +1,25 @@
-class Scraping
-  def self.movie_urls
-    links = []
-    agent = Mechanize.new
-    current_page = agent.get("http://review-movie.herokuapp.com/")
-    elements = current_page.search('.entry-title a')
-    elements.each do |ele|
-      links << ele.get_attribute('href')
-    end
+class Fetching
+  def self.get_restaurant
+    h = Hotpepper.find_by_keyword("丸の内 イタリアン")
+    #h = Hotpepper.find_by_position("35.677962", "139.768286")
+    # product = Product.new(title: title, image_url: image_url)
+    # product.save
 
-    links.each do |link|
-      get_product('http://review-movie.herokuapp.com/' + link)
-    end
-  end
+      h.attributes['shop'].each do |shop|
+       name = shop.attributes['name']
+       lng = shop.attributes['lng']
+       lat = shop.attributes['lat']
+       open = shop.attributes['open']
+       budget = shop.attributes['budget'].attributes['name']
+       url = shop.attributes['urls'].attributes['mobile']
+       tel = shop.attributes['tel']
+       address = shop.attributes['address']
+       # p name
+       # p lng
 
-  def self.get_product(link)
-    agent = Mechanize.new
-    page = agent.get(link)
-    title = page.at('.entry-title').inner_text
-    image_url = page.at('.entry-content img')[:src] if page.at('.entry-content img')
-
-    product = Product.new(title: title, image_url: image_url)
-    product.save
+#       restaurant = Restaurant.where(name: name, latitude: lat, longitude: lng, adress: address, open_time: open, budget: budget, url: url, tel: tel).first_or_initialize
+       restaurant = Restaurant.where(name: name, latitude: lat, longitude: lng, adress: address, open_time: open, budget: budget, url: url, tel: tel).first_or_initialize
+       restaurant.save
+      end
   end
 end

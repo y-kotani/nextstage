@@ -1,25 +1,31 @@
 
 <div id="map"></div>
+<%= javascript_tag do %>
+  window.restaurants = <%= raw @restaurants.to_json %>;
+<% end %>
 <script>
 var infoWindow;
+var infoWindows;
 
 // 位置情報取得成功時
 navigator.geolocation.getCurrentPosition(
     function (pos) {
 
-        //現在地の緯度経度の取得
+        //現在地の緯度経度の取得/////////////////////////////////
         var location ="<li>"+"緯度：" + pos.coords.latitude + "</li>";
         location += "<li>"+"経度：" + pos.coords.longitude + "</li>";
         lat = pos.coords.latitude;
         lng = pos.coords.longitude;
 
-        //zoom,中心地の定義
+
+        //zoom,中心地の定義/////////////////////////////////////
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 16,
           center: {lat: lat, lng: lng}
         });
 
-        //現在地の表示
+
+        //現在地の表示//////////////////////////////////////////
         var you_are_here = new google.maps.Marker( {
             map: map ,  // 地図
             position: new google.maps.LatLng( lat, lng ) , // 位置座標
@@ -29,72 +35,131 @@ navigator.geolocation.getCurrentPosition(
             },
         } ) ;
 
-        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
+        var labels = 'abcdefghijklmnopqrstuvwxyz';
         // Add some markers to the map.
         // Note: The code uses the JavaScript Array.prototype.map() method to
         // create an array of markers based on a given "locations" array.
         // The map() method here has nothing to do with the Google Maps API.
 
-        //DBの指定先の表示
+
+        //DBの指定先の表示///////////////////////////////////////
         var markers = locations.map(function(location, i) {
+            //console.log(markers);
           return new google.maps.Marker({
             position: location,
-            label: labels[i % labels.length]
+            //animation: google.maps.Animation.BOUNCE
           });
         });
 
 
-        // Add a marker clusterer to manage the markers.
+        // Add a marker clusterer to manage the markers.///////
+        //かっこいい表記
         var markerCluster = new MarkerClusterer(map, markers,
             {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+        //console.log('test');
 
-        //吹き出し
-        infoWindow = new google.maps.InfoWindow({ // 吹き出しの追加
-        // content: '<div class="sample">YOU ARE HERE</div>' // 吹き出しに表示する内容
-        content: '<a href="http://www.jreast.co.jp/estation/stations/1039.html" target="_blank">YOU ARE HERE</a>' // 吹き出しに表示する内容
+
+        //吹き出し(you_are_here)////////////////////////////////
+        infoWindow = new google.maps.InfoWindow(
+        { // 吹き出しの追加
+          // 吹き出しに表示する内容
+            content: '<a href="http://www.jreast.co.jp/estation/stations/1039.html" target="_blank">YOU ARE HERE</a>' // 吹き出しに表示する内容
         });
         you_are_here.addListener('click', function() { // マーカーをクリックしたとき
         infoWindow.open(map, you_are_here); // 吹き出しの表示
         });
 
+        var j;
+        for (j = 0; j < markers.length ; j ++){
+            // var markers_lat;
+            // var markers_lng;
+            // markers_lat = locations[j].lat;
+            // markers_lng = locations[j].lng;
+            //console.log(locations[j].lat)
 
-        // //クリックしたら指定したurlに遷移するイベント
-        // google.maps.event.addListener(you_are_here,'click', (function(url){
-        //   return function(){ location.href = url; };
-        // })(url));
+            //吹き出し(makers)//////////////////////////////////
+            //k = j + 71
+            var marker = markers[j];
+
+            restaurant = restaurants[j];
+            //console.log(restaurants[0]);
+            var content = '<a href=" /restaurants/' + restaurant.id +'"" target="_blank">' + restaurant.name + '</a>';
+
+            var infowindow = new google.maps.InfoWindow()
+
+            google.maps.event.addListener(marker,'click', (function(marker, content, infowindow){
+                return function() {
+                    infowindow.setContent(content);
+                    infowindow.open(map,marker);
+                };
+            })(marker, content, infowindow));
 
 
+            // console.log(marker)
+            // // console.log(j)
+            // infoWindows = new google.maps.InfoWindow(
+            // { // 吹き出しの追加
+            //   // 吹き出しに表示する内容
+            //     content: `<a href="http://www.jreast.co.jp/estation/stations/1039.html" target="_blank"> ${j} </a>`
+            // });
+            // console.log(j)
+            // marker.addListener('click', function() {
+            // // マーカーをクリックしたとき
+            // infoWindows.open(map, marker);
+            // // 吹き出しの表示
+            // });
+        }
     });
 
 
+        //DBの取得
+        var i ;
+        var longitudes = <%= @longitude.to_s.html_safe %>;
+        var latitudes = <%= @latitude.to_s.html_safe %>;
+        var locations = [];
+        for (i = 0; i < longitudes.length; i++){
+            var hash_lat = {};
+            var hash_lng = {};
+            var hash_lat_lng = {};
+            hash_lat['lat'] = Number(latitudes[i]);
+            hash_lng['lng'] = Number(longitudes[i]);
+            hash_lat_lng = Object.assign(hash_lat, hash_lng);
+            locations.push(hash_lat_lng);
+        }
+            // console.log(locations);
 
-      var locations = [
-        {lat: -31.563910, lng: 147.154312},
-        {lat: -33.718234, lng: 150.363181},
-        {lat: -33.727111, lng: 150.371124},
-        {lat: -33.848588, lng: 151.209834},
-        {lat: -33.851702, lng: 151.216968},
-        {lat: -34.671264, lng: 150.863657},
-        {lat: -35.304724, lng: 148.662905},
-        {lat: -36.817685, lng: 175.699196},
-        {lat: -36.828611, lng: 175.790222},
-        {lat: -37.750000, lng: 145.116667},
-        {lat: -37.759859, lng: 145.128708},
-        {lat: -37.765015, lng: 145.133858},
-        {lat: -37.770104, lng: 145.143299},
-        {lat: -37.773700, lng: 145.145187},
-        {lat: -37.774785, lng: 145.137978},
-        {lat: -37.819616, lng: 144.968119},
-        {lat: -38.330766, lng: 144.695692},
-        {lat: -39.927193, lng: 175.053218},
-        {lat: -41.330162, lng: 174.865694},
-        {lat: -42.734358, lng: 147.439506},
-        {lat: -42.734358, lng: 147.501315},
-        {lat: -42.735258, lng: 147.438000},
-        {lat: -43.999792, lng: 170.463352}
-      ]
+
+      // var locations = [
+      //   {lat: 35.6591, lng: 139.698},
+      //   {lat: -33.718234, lng: 150.363181},
+      //   {lat: -33.727111, lng: 150.371124},
+      //   {lat: -33.848588, lng: 151.209834},
+      //   {lat: -33.851702, lng: 151.216968},
+      //   {lat: -34.671264, lng: 150.863657},
+      //   {lat: -35.304724, lng: 148.662905},
+      //   {lat: -36.817685, lng: 175.699196},
+      //   {lat: -36.828611, lng: 175.790222},
+      //   {lat: -37.750000, lng: 145.116667},
+      //   {lat: -37.759859, lng: 145.128708},
+      //   {lat: -37.765015, lng: 145.133858},
+      //   {lat: -37.770104, lng: 145.143299},
+      //   {lat: -37.773700, lng: 145.145187},
+      //   {lat: -37.774785, lng: 145.137978},
+      //   {lat: -37.819616, lng: 144.968119},
+      //   {lat: -38.330766, lng: 144.695692},
+      //   {lat: -39.927193, lng: 175.053218},
+      //   {lat: -41.330162, lng: 174.865694},
+      //   {lat: -42.734358, lng: 147.439506},
+      //   {lat: -42.734358, lng: 147.501315},
+      //   {lat: -42.735258, lng: 147.438000},
+      //   {lat: -43.999792, lng: 170.463352}
+      // ]
 </script>
+
+
+
+<!-- Google map の仕様 -->
 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
 </script>
 <script async defer

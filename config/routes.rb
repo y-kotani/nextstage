@@ -1,9 +1,16 @@
 Rails.application.routes.draw do
-  get 'hotpeppers/index'
-
-  resources :places
   devise_for :users
-  get 'restaurants'      =>  'restaurants#index'
-  get 'restaurants/new'  =>  'restaurants#new'  #情報投稿
-  get 'hotpeppers'       =>  'hotpeppers#index'
+  resources :users, only: :show
+
+  #get 'restaurants'      =>  'restaurants#index'
+  #get 'restaurants/new'  =>  'restaurants#new'  #情報投稿
+  resources :restaurants, only: [:index, :show] do
+    resources :reviews, only: [:create]
+  end
+  #get 'hotpeppers'       =>  'hotpeppers#index'
+  #resources :places
+
+  # はじめにこのページに飛ばされる
+  root 'restaurants#index'
+
 end
