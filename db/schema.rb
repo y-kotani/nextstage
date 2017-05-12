@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170511032327) do
+ActiveRecord::Schema.define(version: 20170512063032) do
 
   create_table "hotpeppers", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -40,11 +40,11 @@ ActiveRecord::Schema.define(version: 20170511032327) do
     t.decimal  "latitude",                 precision: 12, scale: 10
     t.decimal  "longitude",                precision: 13, scale: 10
     t.string   "adress",     limit: 255
-    t.string   "open_time",  limit: 255
+    t.text     "open_time",  limit: 65535
     t.string   "budget",     limit: 255
     t.string   "url",        limit: 255
-    t.integer  "tel",        limit: 4
-    t.text     "review",     limit: 65535
+    t.string   "tel",        limit: 255
+    t.text     "imaege",     limit: 65535
     t.integer  "rate",       limit: 4
     t.datetime "created_at",                                         null: false
     t.datetime "updated_at",                                         null: false

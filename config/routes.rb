@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
   #get 'hotpeppers'       =>  'hotpeppers#index'
   #resources :places
+  resources :reviews, only: [:edit, :update, :destroy]
 
   # はじめにこのページに飛ばされる
   root 'restaurants#index'

@@ -1,1 +1,51 @@
-<%= @restaurant.name %>
+<div>店名：<%= @restaurant.name %></div>
+
+<% if @restaurant.reviews.present? %>
+    <div class="star-actived"><%= "平均点: #{@restaurant.review_average}/5" %></div>
+<% else %>
+  <span class="rating-star">
+    <i class="star-actived rate-0"></i>
+  </span>
+<% end %>
+
+<div>電話番号：<%= @restaurant.tel %></div>
+<div>住所：<%= @restaurant.adress %></div>
+<div>開店時間：<%= @restaurant.open_time %></div>
+<div>平均予算：<%= @restaurant.budget %></div>
+<div><img src="<%= @restaurant.imaege %>" alt="サンプル">
+</div>
+
+<div class="reviews_see">
+  <h4>＜ここはみんなの書いたコメントたち＞</h4>
+  <% if @reviews %>
+    <% @reviews.each do |review| %>
+      <p>
+        <strong><%= link_to review.user.name, "/users/#{review.user_id}" %>さんの</strong> <br>
+        <%= "評価: #{review.rate}" %><br>
+        <%= "コメント: #{review.review}" %></p>
+    <% end %>
+  <% end %>
+</div>
+
+<% if current_user %>
+  <h4>＜ここはみんながコメントを書くところ＞</h4>
+  <%= form_for [@restaurant, @review] do |f| %>
+          <div style="margin: 8px 0">
+            <%= f.label :評価, style: { 'margin-right' => 8 } %>
+            <%= f.number_field :rate, placeholder: '評価', value: 1, max: 5, min: 1, html: { class: "search__query", style: 'text-align: right;' } %>
+          </div>
+
+          <div style="margin: 8px 0">
+            <%= f.text_area :review, placeholder: 'レビューを書いてね！', style: 'width: 100%;height: 300px;' %>
+          </div>
+
+          <div class="row">
+            <div class="col10 push1">
+              <%= button_tag type: "submit", class: "btn btn--block" do %>
+                投稿する<i class="icon-arrow-right"></i>
+              <% end %>
+            </div>
+          </div>
+  <% end %>
+<% end %>
+

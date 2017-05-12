@@ -1,0 +1,23 @@
+
+<div class="comments">
+  <% if @reviews %>
+    <% @reviews.each do |review| %>
+      <p>
+        <strong><%= link_to review.restaurant.name, "/restaurants/#{review.restaurant_id}" %>：</strong><br>
+        <%= "評価: #{review.rate}" %><br>
+        <%= "コメント: #{review.review}" %>
+
+
+        <% if user_signed_in? && current_user.id == review.user_id %>
+              <li>
+                <%= link_to '編集', "/reviews/#{review.id}/edit", method: :get %>
+              </li>
+              <li>
+                <%= link_to '削除', "/reviews/#{review.id}", method: :delete %>
+              </li>
+            <% end %>
+
+      </p>
+    <% end %>
+  <% end %>
+</div>
