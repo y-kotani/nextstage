@@ -1,3 +1,31 @@
 // Place all the styles related to the restaurants controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#left_show {
+          float: left;
+          width: 65%; /* サイドバーの幅 */
+
+}
+
+#right_show {
+          float: right;
+          width: 35%; /* サイドバーの幅 */
+
+}
+
+#image_restaurant {
+float: right;
+width: 30%; /* サイドバーの幅 */
+}
+
+#info_restaurant {
+float: left;
+width: 70%; /* サイドバーの幅 */
+}
+
+.clearfix:after {
+  content: "";
+  clear: both;
+  display: block;
+}

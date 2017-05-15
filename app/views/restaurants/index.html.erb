@@ -30,9 +30,10 @@ navigator.geolocation.getCurrentPosition(
             map: map ,  // 地図
             position: new google.maps.LatLng( lat, lng ) , // 位置座標
             icon: {
-                url:'http://beachesbia.com/wp-content/uploads/2014/08/0011.png',
+                url:'http://irlday.org/img/yorokobu.png',
                 scaledSize: new google.maps.Size( 50, 50 ) ,
             },
+            animation: google.maps.Animation.BOUNCE
         } ) ;
 
 
@@ -117,4 +118,3 @@ navigator.geolocation.getCurrentPosition(
 <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP']%>&callback=initMap">
 </script>
-Powered by <a href="http://webservice.recruit.co.jp/">ホットペッパー Webサービス</a>

@@ -1,7 +1,6 @@
 
-<div class="comments">
-  <% if @reviews %>
-    <% @reviews.each do |review| %>
+
+
       <p>
         <strong><%= link_to review.restaurant.name, "/restaurants/#{review.restaurant_id}" %>：</strong><br>
         <%= "評価: #{review.rate}" %><br>
@@ -18,6 +17,3 @@
             <% end %>
 
       </p>
-    <% end %>
-  <% end %>
-</div>
