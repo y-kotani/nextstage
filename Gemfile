@@ -53,3 +53,6 @@ gem 'gmaps4rails'
 gem "geocoder"
 gem 'activeresource'
 gem 'mechanize'
+group :production do
+  gem 'rails_12factor'
+end
