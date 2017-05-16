@@ -115,6 +115,13 @@ navigator.geolocation.getCurrentPosition(
 <!-- Google map の仕様 -->
 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
 </script>
+
 <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP']%>&callback=initMap">
 </script>
+
+<!-- <script>
+$(document).ready(function() {
+  initMap();
+});
+</script> -->
