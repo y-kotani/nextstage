@@ -78,7 +78,7 @@ navigator.geolocation.getCurrentPosition(
 
             restaurant = restaurants[j];
             //console.log(restaurants[0]);
-            var content = '<a href=" /restaurants/' + restaurant.id +'"" >' + restaurant.name+ '<br>' +restaurant.tel + '</a>';
+            var content = '<a href=" /restaurants/' + restaurant.id +'"" >' + restaurant.name +'</a>'+ '<br>' +'<a>' + restaurant.tel + '</a>';
 
             var infowindow = new google.maps.InfoWindow()
 
