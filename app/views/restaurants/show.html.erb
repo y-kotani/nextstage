@@ -25,8 +25,21 @@
     </div>
 </div>
 
-<div id = down_show>
-<% if current_user %>
+<div class="reviews_see">
+    <h4>＜ここはみんなの書いたコメントたち＞</h4>
+    <% if @reviews %>
+      <% @reviews.each do |review| %>
+        <p>
+          <strong><%= link_to review.user.name, "/users/#{review.user_id}" %>さんの</strong> <br>
+          <%=image_tag ('star.png'), :size => '30x20' %>
+          <%= review.rate %>
+        </p>
+      <% end %>
+    <% end %>
+</div>
+
+<div id = restaurant_fotter>
+  <% if current_user %>
     <%= form_for [@restaurant, @review] do |f| %>
             <div style="margin: 8px 0">
               <%=image_tag ('pen.png'), :size => '30x20' %>
@@ -34,10 +47,10 @@
               <%= f.number_field :rate, placeholder: 'Rate', value: 1, max: 5, min: 1, html: { class: "search__query", style: 'text-align: right;' } %>
             </div>
 
-            <!-- <div style="margin: 8px 0">
+<!--              <div style="margin: 8px 0">
               <%= f.text_area :review, placeholder: 'レビューを書いてね！', style: 'width: 30%;height: 100px;' %>
-             --></div>
-
+             </div>
+ -->
             <div class="row">
               <div class="col10 push1">
                 <%= button_tag type: "submit", class: "btn btn--block" do %>
@@ -47,15 +60,4 @@
             </div>
     <% end %>
   <% end %>
-  <div class="reviews_see">
-    <h4>＜ここはみんなの書いたコメントたち＞</h4>
-    <% if @reviews %>
-      <% @reviews.each do |review| %>
-        <p>
-          <strong><%= link_to review.user.name, "/users/#{review.user_id}" %>さんの</strong> <br>
-          <%=image_tag ('star.png'), :size => '30x20' %>
-          <%= review.rate %><br>
-      <% end %>
-    <% end %>
-  </div>
 </div>
