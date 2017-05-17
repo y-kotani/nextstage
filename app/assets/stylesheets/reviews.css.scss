@@ -1,3 +1,28 @@
 // Place all the styles related to the reviews controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.box_infoED:after{
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.pic_edit{
+  float: left;
+  font-size: 14px;
+  margin-left: 35px;
+  margin-top: 5px;
+}
+.pic_delete{
+  float: left;
+  font-size: 14px;
+  margin-left: 35px;
+  margin-top: 5px;
+}
+
+.info{
+  float: left;
+  font-size: 14px;
+  width: 90%;
+}
