@@ -1,42 +1,41 @@
-
-
-
-      <p class = "mypage_comment">
+     <p class = "mypage_comment">
+      <div class ="comments1">
+      <div class = "box_info">
         <strong class = pic>
           <%=image_tag ('restaurant.png'), :size => '18x12' %>
           <%= link_to review.restaurant.name, "/restaurants/#{review.restaurant_id}" %>
-        </strong><br>
-
-          <div class ="box_info">
-            <strong class = pic>
-              <%=image_tag ('star.png'), :size => '18x12' %>
-            </strong>
-            <div class="star-actived">
-             <% rate_avg = review.rate %>
-              <% if 0.0< rate_avg && rate_avg<= 0.5 %>
-                <% rate_avg = "rate rate05"%>
-              <%elsif 0.5< rate_avg && rate_avg<= 1.0%>
-                <% rate_avg = "rate rate10"%>
-              <%elsif 1.0< rate_avg && rate_avg<= 1.5%>
-                <% rate_avg = "rate rate15"%>
-              <%elsif 1.5< rate_avg && rate_avg<= 2.0%>
-                <% rate_avg = "rate rate20"%>
-              <%elsif 2.0< rate_avg && rate_avg<= 2.5%>
-                <% rate_avg = "rate rate25"%>
-              <%elsif 2.5< rate_avg && rate_avg<= 3.0%>
-                <% rate_avg = "rate rate30"%>
-              <%elsif 3.0< rate_avg && rate_avg<= 3.5%>
-                <% rate_avg = "rate rate35"%>
-              <%elsif 3.5< rate_avg && rate_avg<= 4.0%>
-                <% rate_avg = "rate rate40"%>
-              <%elsif 4.0< rate_avg && rate_avg<= 4.5%>
-                <% rate_avg = "rate rate45"%>
-              <%elsif 4.5< rate_avg && rate_avg<= 5.0%>
-                <% rate_avg = "rate rate50"%>
-              <% end %>
-             <div class ="<%= rate_avg %>"></div>
-            </div>
+        </strong>
+      </div>
+        <div class ="box_info">
+          <div class = pic>
+            <%=image_tag ('star.png'), :size => '18x12' %>
           </div>
+          <div class="star-actived">
+           <% rate_avg = review.rate %>
+            <% if 0.0< rate_avg && rate_avg<= 0.5 %>
+              <% rate_avg = "rate rate05"%>
+            <%elsif 0.5< rate_avg && rate_avg<= 1.0%>
+              <% rate_avg = "rate rate10"%>
+            <%elsif 1.0< rate_avg && rate_avg<= 1.5%>
+              <% rate_avg = "rate rate15"%>
+            <%elsif 1.5< rate_avg && rate_avg<= 2.0%>
+              <% rate_avg = "rate rate20"%>
+            <%elsif 2.0< rate_avg && rate_avg<= 2.5%>
+              <% rate_avg = "rate rate25"%>
+            <%elsif 2.5< rate_avg && rate_avg<= 3.0%>
+              <% rate_avg = "rate rate30"%>
+            <%elsif 3.0< rate_avg && rate_avg<= 3.5%>
+              <% rate_avg = "rate rate35"%>
+            <%elsif 3.5< rate_avg && rate_avg<= 4.0%>
+              <% rate_avg = "rate rate40"%>
+            <%elsif 4.0< rate_avg && rate_avg<= 4.5%>
+              <% rate_avg = "rate rate45"%>
+            <%elsif 4.5< rate_avg && rate_avg<= 5.0%>
+              <% rate_avg = "rate rate50"%>
+            <% end %>
+           <div class ="<%= rate_avg %>"></div>
+          </div>
+        </div>
 
         <% if user_signed_in? && current_user.id == review.user_id %>
         <div class = "box_infoED">
@@ -50,5 +49,5 @@
           </div>
         </div>
         <% end %>
-
+      </div>
       </p>

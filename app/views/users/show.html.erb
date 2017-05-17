@@ -1,5 +1,6 @@
 <div class="contents row" >
-  <p><%= @user.name %>さんの投稿一覧</p>
+  <%=  link_to @user.name %>さんの<%=image_tag ('star.png'), :size => '18x12' %> <%=image_tag ('star.png'), :size => '18x12' %> <%=image_tag ('star.png'), :size => '18x12' %>
+
   <div class="comments">
     <%= render @reviews  %>
   </div>
