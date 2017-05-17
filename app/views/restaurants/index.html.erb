@@ -3,6 +3,7 @@
 <%= javascript_tag do %>
   window.restaurants = <%= raw @restaurants.to_json %>;
 <% end %>
+
 <script>
 var infoWindow;
 var infoWindows;
@@ -37,7 +38,6 @@ navigator.geolocation.getCurrentPosition(
         } ) ;
 
 
-        var labels = 'abcdefghijklmnopqrstuvwxyz';
         // Add some markers to the map.
         // Note: The code uses the JavaScript Array.prototype.map() method to
         // create an array of markers based on a given "locations" array.
@@ -65,7 +65,7 @@ navigator.geolocation.getCurrentPosition(
         infoWindow = new google.maps.InfoWindow(
         { // 吹き出しの追加
           // 吹き出しに表示する内容
-            content: '<a href="http://www.jreast.co.jp/estation/stations/1039.html" target="_blank">YOU ARE HERE</a>' // 吹き出しに表示する内容
+            content: '<div>YOU ARE HERE</div>' // 吹き出しに表示する内容
         });
         you_are_here.addListener('click', function() { // マーカーをクリックしたとき
         infoWindow.open(map, you_are_here); // 吹き出しの表示
@@ -120,8 +120,10 @@ function initMap(){};
 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
 </script>
 
+
 <script async defer
-src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP']%>&callback=initMap">
+src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP'] %>&callback=initMap" data-turbolinks-eval="false">
+window.google = {};
 </script>
 
 <!-- <script>
