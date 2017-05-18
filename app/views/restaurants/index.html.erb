@@ -5,6 +5,7 @@
 <% end %>
 
 <script>
+function initMap(){
 var infoWindow;
 var infoWindows;
 
@@ -108,11 +109,8 @@ navigator.geolocation.getCurrentPosition(
             hash_lat_lng = Object.assign(hash_lat, hash_lng);
             locations.push(hash_lat_lng);
         }
+    };
 </script>
-<script>
-function initMap(){};
-</script>
-
 
 
 
@@ -126,8 +124,8 @@ src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP'] %>&callba
 window.google = {};
 </script>
 
-<!-- <script>
+<script>
 $(document).ready(function() {
   initMap();
 });
-</script> -->
+</script>
