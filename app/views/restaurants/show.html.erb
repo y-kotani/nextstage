@@ -89,7 +89,7 @@
       <% @reviews.each do |review| %>
         <p>
           <div class ="box_info">
-            <strong class = pic>
+            <strong class = "pic">
               <%= link_to review.user.name, "/users/#{review.user_id}" %>さんの<%=image_tag ('star.png'), :size => '18x12' %>
             </strong>
 
@@ -127,21 +127,14 @@
 <div id = restaurant_fotter>
   <% if current_user %>
     <%= form_for [@restaurant, @review] do |f| %>
-<!--       <div style="margin: 8px 0">-->
         <div class = "box_info">
           <div class = "pic">
             <%=image_tag ('pen.png'), :size => '18x12' %>
-          </div>
-          <div class = "info">
             <%= f.number_field :rate, placeholder: 'Rate', value: 1, max: 5, min: 1, html: { class: "search__query", style: 'text-align: right;' } %>
-          </div>
-
-          <div class="col10 push1">
             <%= button_tag type: "submit", class: "btn btn--block" do %>
           投稿する<i class="icon-arrow-right"></i>
           </div>
         </div>
-<!--       </div> -->
     <% end %>
   <% end %>
   <% end %>

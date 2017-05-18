@@ -224,7 +224,18 @@ div.contents {
   margin-top: $header_height;
 
 }
-
+div.contents1.row {
+  margin-top: $header_height;
+  h2 {
+    @include boxBase(20px 0, 0);
+    font-weight: normal;
+    strong {
+      font-weight: bold;
+      padding-right: 5px;
+      font-size: 1.2em;
+    }
+  }
+}
 div.contents.row {
   margin-top: $header_height;
   h2 {
