@@ -28,15 +28,15 @@ navigator.geolocation.getCurrentPosition(
 
 
         //現在地の表示//////////////////////////////////////////
-        var you_are_here = new google.maps.Marker( {
-            map: map ,  // 地図
-            position: new google.maps.LatLng( lat, lng ) , // 位置座標
-            icon: {
-                url:'http://irlday.org/img/yorokobu.png',
-                scaledSize: new google.maps.Size( 50, 50 ) ,
-            },
-            animation: google.maps.Animation.BOUNCE
-        } ) ;
+        // var you_are_here = new google.maps.Marker( {
+        //     map: map ,  // 地図
+        //     position: new google.maps.LatLng( lat, lng ) , // 位置座標
+        //     icon: {
+        //         url:'http://irlday.org/img/yorokobu.png',
+        //         scaledSize: new google.maps.Size( 50, 50 ) ,
+        //     },
+        //     animation: google.maps.Animation.BOUNCE
+        // } ) ;
 
 
         // Add some markers to the map.
@@ -57,8 +57,8 @@ navigator.geolocation.getCurrentPosition(
 
         // Add a marker clusterer to manage the markers.///////
         //かっこいい表記
-        var markerCluster = new MarkerClusterer(map, markers,
-            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+        // var markerCluster = new MarkerClusterer(map, markers,
+        //     {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
         //console.log('test');
 
 
