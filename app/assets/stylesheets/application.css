@@ -39,65 +39,75 @@ body{
   display: inline-block;
   height: 16px;
   line-height: 16px;
-  margin-left: 5px;
+  margin-left: -20px;
 }
 .rate:before {
   color: #ddd;
 }
 .rate:after {
-  color: #ffa500;
+/*  color: #ffa500;*/
   overflow: hidden;
   white-space: nowrap;
 }
-
+/*#ff6a00*/
 .rate00:after {
   width: 0;
-  margin-left: 5px;
+  margin-left: -20px;
+  color: #ffa500;
 }
 
 .rate10:after {
   width: 16px;
-  margin-left: 5px;
+  margin-left: -20px;
+  color: #ffa500;
 }
 
 .rate15:after {
   width: 26px;
-  margin-left: 5px;
+  margin-left: -20px;
+  color: #ffa500;
 }
 
 .rate20:after {
   width: 36px;
-  margin-left: 5px;
+  margin-left: -20px;
+  color: #ffa500;
 }
 
 .rate25:after {
   width: 45.5px;
-  margin-left: 5px;
+  margin-left: -20px;
+  color: #ffa500;
 }
 
 .rate30:after {
   width: 54px;
-  margin-left: 5px;
+  margin-left: -20px;
+  color: #ffa500;
 }
 
 .rate35:after {
   width: 64.5px;
-  margin-left: 5px;
+  margin-left: -20px;
+  color: #ff6a00;
 }
 
 .rate40:after {
   width: 72px;
-  margin-left: 5px;
+  margin-left: -20px;
+  color: #ff6a00;
 }
 
 .rate45:after {
   width: 81.5px;
-  margin-left: 5px;
+  margin-left: -20px;
+  color: #ff6a00;
 }
 
 .rate50:after {
   width: 90px;
-  margin-left: 5px;
+  margin-left: -20px;
+  color: #ff6a00;
 }
 
 .wrap {

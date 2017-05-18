@@ -3,14 +3,13 @@
     <div id = image_restaurant>
       <img src="<%= @restaurant.imaege %>" alt="写真" >
     </div>
-
+    <div class = "big_box_info">
     <div class = "box_info">
       <div class ="pic">
         <%=image_tag ('restaurant.png'), :size => '18x12' %>
         <%= @restaurant.name %>
       </div>
     </div>
-    <div id = info_restaurant>
       <% if @restaurant.reviews.present? %>
         <div class = "box_info">
           <div class ="pic">
@@ -65,13 +64,11 @@
         </div>
       </div>
 
-      <div class ="for_center">
       <div class = "box_info">
         <div class ="pic">
           <%=image_tag ('money.png'), :size => '18x12' %>
           <%= @restaurant.budget %>
         </div>
-      </div>
       </div>
 
       <div class = "box_info">
@@ -81,6 +78,7 @@
         </div>
       </div>
     </div>
+  </div>
 </div>
 
 <div class="reviews_see">
