@@ -45,9 +45,14 @@
           </div>
         </div>
       <% else %>
-        <span class="rating-star">
-          <i class="star-actived rate-0"></i>
-        </span>
+        <div class = "box_info">
+          <div class ="pic">
+            <%=image_tag ('star.png'), :size => '18x12' %>
+          </div>
+          <div class="star-actived">
+            <div class = "rate rate00" ></div>
+          </div>
+        </div>
       <% end %>
 
       <div class = "box_info">
