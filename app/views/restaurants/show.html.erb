@@ -93,7 +93,7 @@
               <%= link_to review.user.name, "/users/#{review.user_id}" %>さんの<%=image_tag ('star.png'), :size => '18x12' %>
             </strong>
 
-            <div class="star-actived">
+            <div class="star-actived_com">
              <% rate_avg = review.rate %>
             <% if 0.0< rate_avg && rate_avg<= 0.5 %>
               <% rate_avg = "rate rate05"%>
